@@ -1,5 +1,5 @@
 {
-  "name": "pollster-frontend",
+  "name": "samiheikki-pollster-front",
   "dependencies": {
     "list": "latest",
     "socket.io-client": "^1.4.8",

@@ -1,6 +1,6 @@
 declare var io:any;
 
-var socket = io('https://pollster-server-ceyutkgvjm.now.sh');
+var socket = io('https://samiheikki-pollster-server-tpiczatazk.now.sh');
 
 class Handle {
   private elm: HTMLElement;
@@ -56,7 +56,7 @@ class Handle {
     let nextY = this.boundingHeight * this.handlePercent;
     this.elm.style.top = `${nextY}px`;
     this.throttle(() => {
-      updateStatus(`sent: ${(1 - this.handlePercent).toFixed(3)}`)
+      updateStatus(`value: ${((1 - this.handlePercent) * 100).toFixed(2)}%`)
       socket.emit('vote', {percent: this.handlePercent});
     });
   }
@@ -111,11 +111,11 @@ class Handle {
 
 new Handle();
 
-socket.on('connect', _ => updateStatus('connected.'));
-socket.on('reconnect', _ => updateStatus('connected.'));
+socket.on('connect', _ => updateStatus('connected'));
+socket.on('reconnect', _ => updateStatus('connected'));
 
-socket.on('error', _ => updateStatus('error. :('));
-socket.on('disconnect', _ => updateStatus('disconnected.'));
+socket.on('error', _ => updateStatus('error. try to reload'));
+socket.on('disconnect', _ => updateStatus('disconnected'));
 
 function updateStatus(msg: string) {
   document.querySelector('.status').textContent = msg;
