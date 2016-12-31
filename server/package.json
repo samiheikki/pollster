@@ -1,5 +1,5 @@
 {
-  "name": "pollster-server",
+  "name": "samiheikki-pollster-server",
   "scripts": {
     "build": "tsc index.ts",
     "start": "node index.js"
